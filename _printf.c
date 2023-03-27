@@ -2,21 +2,18 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdarg.h>
-#include <stdio.h>
+
 /**
  * _printf  - producing output according to a format
  * @format: a character string
  * project done by Team Badu, Paul
  * Return: the number of characters printed
- *
 **/
-
 int _printf(const char *format, ...)
 {
-	int i;
-	void (*func)(char *);
-	char *c;
-	char *str;
+	int i, len = 0;
+	int (*func)(char *);
+	char *c, ch, *str;
 	va_list ap;
 
 	va_start(ap, format);
@@ -25,63 +22,64 @@ int _printf(const char *format, ...)
 		func = get_fmt_func('c');
 		if (format[i] == '%')
 		{
-			c = (char *) va_arg(ap, char *);
-			printf("%p\n", c);
-			if (format[i + 1] == 's') 
+			if (format[i + 1] == 'c')
 			{
+				ch = va_arg(ap, int);
+				c = ctoa(ch);
+			}
+			else if (format[i + 1] == 's')
+			{
+				c = va_arg(ap, char *);
 				func = get_fmt_func('s');
-				i++;
+			}
+			else if (format[i + 1] == '%')
+				c = ctoa('%');
+			else
+			{
+				str = ctoa(format[i]);
+				len += func(str);
 				continue;
 			}
-			func(c);
+			len += func(c);
 			i++;
 			continue;
 		}
-		str = malloc(2);
-		if (str == NULL)
-		{
-			free(str);
-			return (0);
-		}
-		str[0] = format[i];
-		str[1] = '\0';
-		func(str);
+		str = ctoa(format[i]);
+		len += func(str);
 	}
 	va_end(ap);
-	func("\n");
 
-	return (0);
+	return (len);
 }
 
 /**
  * printchar - printing the chars in it
- * @c: the format specified
+ * @str: the format specified
  * project done by Team Badu, Paul
  * Return: void
  *
 **/
-
-void printchar(char *c)
+int printchar(char *str)
 {
-	char *str = malloc(2);
-
-	if (str == NULL)
-	{
-		free(str);
-		return;
-	}
-	str[0] = c[0];
-	str[1] = '\0';
 	write(1, str, 1);
+
+	return (1);
 }
 
-void printstr(char *str)
+/**
+ * printstr - prints a string
+ * @str: the string to be printed
+ * Return: the length of printed string
+ */
+int printstr(char *str)
 {
 	int len = 0;
 
 	for (; str[len]; len++)
 		;
 	write(1, str, len);
+
+	return (len);
 }
 
 /**
@@ -89,10 +87,8 @@ void printstr(char *str)
  * @f: the format to get
  * project done by Team Badu, Paul
  * Return: pointer to a function
- *
 **/
-
-void (*get_fmt_func(char f))(char *)
+int (*get_fmt_func(char f))(char *)
 {
 	int i;
 	fmt formats[] = {
@@ -103,8 +99,27 @@ void (*get_fmt_func(char f))(char *)
 	for (i = 0; i < 2; i++)
 	{
 		if (formats[i].format == f)
-		{
 			return (formats[i].func);
-		}
 	}
+	return (NULL);
+}
+
+/**
+ * ctoa - converts char to string
+ * @c: the character
+ * Return: a string
+ */
+char *ctoa(char c)
+{
+	char *str = malloc(2);
+
+	if (str == NULL)
+	{
+		free(str);
+		return (NULL);
+	}
+	str[0] = c;
+	str[1] = '\0';
+
+	return (str);
 }

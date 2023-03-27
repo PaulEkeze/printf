@@ -12,11 +12,12 @@ int _printf(const char *format, ...);
 typedef struct format
 {
 	char format;
-	void (*func)(char *);
+	int (*func)(char *);
 } fmt;
 
-void printchar(char *);
-void printstr(char *);
-void (*get_fmt_func(char f))(char *);
+int printchar(char *);
+int printstr(char *);
+int (*get_fmt_func(char f))(char *);
+char *ctoa(char);
 
 #endif
