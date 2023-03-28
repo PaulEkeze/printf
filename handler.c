@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 #include <stdarg.h>
 
 /**
@@ -21,4 +22,19 @@ int char_handler(va_list ap)
 int percent_handler(va_list ap __attribute__((unused)))
 {
 	return (printchar('%'));
+}
+
+/**
+ * str_handler - handles %s format in string
+ * @ap: list of arguments
+ * Return: number of characters printed
+ */
+int str_handler(va_list ap)
+{
+	char *str = va_arg(ap, char *);
+
+	if (str == NULL)
+		return (printstr("(null)"));
+	
+	return (printstr(str));
 }

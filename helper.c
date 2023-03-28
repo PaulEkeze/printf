@@ -24,7 +24,7 @@ char *ctos(char ch)
  * @str: the string
  * Return: length of str
  */
-int ger_length(char *str)
+int get_length(char *str)
 {
 	int len = 0;
 

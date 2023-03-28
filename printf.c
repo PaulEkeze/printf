@@ -48,10 +48,12 @@ int (*get_handler(char specifier))(va_list)
 	int i;
 	fhandler handlers[] = {
 		{'c', char_handler},
-		{'%', percent_handler}
+		{'%', percent_handler},
+		{'s', str_handler},
+		{'\0', NULL}
 	};
 
-	for (i = 0; i < 2; i++)
+	for (i = 0; handlers[i].specifier; i++)
 		if (handlers[i].specifier == specifier)
 			return (handlers[i].handler);
 	return (NULL);
