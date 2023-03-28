@@ -11,6 +11,7 @@ char *ctos(char ch)
 	char *str = malloc(2);
 
 	if (str == NULL)
+		free(str);
 		return (NULL);
 
 	str[0] = ch;
