@@ -20,5 +20,7 @@ int printchar(char ch);
 int char_handler(va_list ap);
 int (*get_handler(char specifier))(va_list);
 int percent_handler(va_list ap __attribute__((unused)));
+int get_length(char *str);
+int printstr(char *str);
 
 #endif

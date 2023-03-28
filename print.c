@@ -14,3 +14,16 @@ int printchar(char ch)
 
 	return (1);
 }
+
+/**
+ * printstr - prints a string literal to stdout
+ * @str: the string to be printed
+ * Return: number of characters printed
+ */
+int printstr(char *str)
+{
+	int len = get_length(str);
+	write(1, str, len);
+
+	return (len);
+}
