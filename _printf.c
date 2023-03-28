@@ -25,6 +25,8 @@ int _printf(const char *format, ...)
 		func = get_fmt_func('c');
 		if (format[i] == '%')
 		{
+			if (format[i + 1] == '\0')
+				return (-1);
 			if (format[i + 1] == 'c')
 			{
 				ch = va_arg(ap, int);
