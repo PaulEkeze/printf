@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stddef.h>
 
 /**
  * _printf - prints formated string
@@ -8,6 +9,9 @@
 int _printf(const char *format, ...)
 {
 	int i, len = 0;
+
+	if (format == NULL)
+		return (-1);
 
 	for (i = 0; format[i]; i++)
 	{
