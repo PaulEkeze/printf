@@ -23,6 +23,7 @@ int printchar(char ch)
 int printstr(char *str)
 {
 	int len = get_length(str);
+
 	write(1, str, len);
 
 	return (len);

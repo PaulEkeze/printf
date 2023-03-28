@@ -35,6 +35,6 @@ int str_handler(va_list ap)
 
 	if (str == NULL)
 		return (printstr("(null)"));
-	
+
 	return (printstr(str));
 }
