@@ -9,7 +9,7 @@
  */
 int _printf(const char *format, ...)
 {
-	int j, i, len = 0;
+	int i, len = 0;
 	va_list ap;
 	int (*handler)(va_list);
 
@@ -23,13 +23,6 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == '\0')
 				return (-1);
-
-			if (format[i + 1] == ' ')
-			{
-				for (j = i + 1; format[j] == ' '; j++)
-					;
-				i = j - 1;
-			}
 
 			handler = get_handler(format[i + 1]);
 
