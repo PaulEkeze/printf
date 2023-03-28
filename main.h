@@ -4,7 +4,7 @@
 #include <stdarg.h>
 
 /**
- * format_handler - sturcture for handling formats in string
+ * struct format_handler - sturcture for handling formats in string
  * @specifier: a specific character or format
  * @handler: a pointer to a function to handle a format
  */
@@ -18,5 +18,7 @@ int _printf(const char *format, ...);
 char *ctos(char ch);
 int printchar(char ch);
 int char_handler(va_list ap);
+int (*get_handler(char specifier))(va_list);
+int percent_handler(va_list ap __attribute__((unused)));
 
 #endif
