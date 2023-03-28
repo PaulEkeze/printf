@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stddef.h>
+#include <stdarg.h>
 
 /**
  * format_handler - sturcture for handling formats in string
@@ -17,5 +17,6 @@ typedef struct format_handler
 int _printf(const char *format, ...);
 char *ctos(char ch);
 int printchar(char ch);
+int char_handler(va_list ap);
 
 #endif
