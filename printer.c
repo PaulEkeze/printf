@@ -8,9 +8,7 @@
  */
 int printchar(char ch)
 {
-	char *str = ctos(ch);
-
-	write(1, str, 1);
+	write(1, &ch, 1);
 
 	return (1);
 }
