@@ -15,7 +15,6 @@ typedef struct format_handler
 } fhandler;
 
 int _printf(const char *format, ...);
-char *ctos(char ch);
 int printchar(char ch);
 int char_handler(va_list ap);
 int (*get_handler(char specifier))(va_list);
