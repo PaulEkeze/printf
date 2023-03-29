@@ -52,6 +52,8 @@ int (*get_handler(char specifier))(va_list)
 		{'c', char_handler},
 		{'%', percent_handler},
 		{'s', str_handler},
+		{'i', int_handler},
+		{'d', int_handler},
 		{'\0', NULL}
 	};
 
