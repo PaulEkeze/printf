@@ -47,31 +47,36 @@ int str_handler(va_list ap)
  */
 int int_handler(va_list ap)
 {
-	int i, k, len = 0;
+	int i, len = 0, num = va_arg(ap, int), num_cp = num;
 	char *digit;
-	int num_cp;
-	int num = va_arg(ap, int);
 
-	num_cp = num;
 	if (num_cp < 0)
 	{
 		len += printchar('-');
 		for (i = 0; num_cp < 0 ; i++)
 			num_cp /= 10;
 	}
-	else
+	else if (num_cp > 0)
 		for (i = 0; num_cp > 0 ; i++)
 			num_cp /= 10;
+	else
+		return (printchar('0'));
 
 	digit = malloc(i + 1);
+	if (digit == NULL)
+	{
+		free(digit);
+		return (0);
+	}
+
 	digit[i] = '\0';
 
-	for (k = i - 1; k >= 0; k--)
+	for (i = i - 1; i >= 0; i--)
 	{
 		if (num < 0)
-			digit[k] = ((num % 10) * -1) + '0';
+			digit[i] = ((num % 10) * -1) + '0';
 		else
-			digit[k] = (num % 10) + '0';
+			digit[i] = (num % 10) + '0';
 		num /= 10;
 	}
 
