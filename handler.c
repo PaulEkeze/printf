@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 #include <stdlib.h>
 #include <stdarg.h>
 
@@ -46,25 +47,31 @@ int str_handler(va_list ap)
  */
 int int_handler(va_list ap)
 {
-	int i, j, k, len = 0;
+	int i, k, len = 0;
 	char *digit;
+	int num_cp;
 	int num = va_arg(ap, int);
 
-	if (num < 0)
+	num_cp = num;
+	if (num_cp < 0)
 	{
-		num *= -1;
 		len += printchar('-');
+		for (i = 0; num_cp < 0 ; i++)
+			num_cp /= 10;
 	}
+	else
+		for (i = 0; num_cp > 0 ; i++)
+			num_cp /= 10;
 
-	for (j = 1, i = 10; num > i; i *= 10, j++)
-		;
+	digit = malloc(i + 1);
+	digit[i] = '\0';
 
-	digit = malloc(j + 1);
-	digit[j] = '\0';
-
-	for (k = j - 1; k >= 0; k--)
+	for (k = i - 1; k >= 0; k--)
 	{
-		digit[k] = (num % 10) + '0';
+		if (num < 0)
+			digit[k] = ((num % 10) * -1) + '0';
+		else
+			digit[k] = (num % 10) + '0';
 		num /= 10;
 	}
 
