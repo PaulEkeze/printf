@@ -23,5 +23,8 @@ int get_length(char *str);
 int printstr(char *str);
 int str_handler(va_list ap);
 int int_handler(va_list ap);
+void dec_to_bi(char *binary, int decimal);
+int bi_handler(va_list ap);
+int get_bi_length(int decimal);
 
 #endif

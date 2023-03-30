@@ -54,6 +54,7 @@ int (*get_handler(char specifier))(va_list)
 		{'s', str_handler},
 		{'i', int_handler},
 		{'d', int_handler},
+		{'b', bi_handler},
 		{'\0', NULL}
 	};
 

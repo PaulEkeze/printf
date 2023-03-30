@@ -82,3 +82,20 @@ int int_handler(va_list ap)
 
 	return (printstr(digit) + len);
 }
+
+/**
+ * binary_handler - handles %b format in string
+ * @ap: list of arguments
+ * Return: number of characters printed
+ */
+int bi_handler(va_list ap)
+{
+	int decimal = va_arg(ap, int);
+	int len = get_bi_length(decimal);
+	char *binary = malloc(len + 1);
+
+	dec_to_bi(&binary[len - 1], decimal);
+	binary[len] = '\0';
+	return (printstr(binary));
+}
+
