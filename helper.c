@@ -31,7 +31,7 @@ void dec_to_bi(char *binary, unsigned int decimal)
 }
 
 /**
- * get_bi_lengrh - get length of a number after
+ * get_bi_length - get length of a number after
  * it's been converted to binary
  * @decimal: a number in base 10.
  * Return: length of a binary number.
