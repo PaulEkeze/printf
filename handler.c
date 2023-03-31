@@ -99,6 +99,11 @@ int bi_handler(va_list ap)
 		return (printchar('0'));
 	len = get_bi_length(decimal);
 	binary = malloc(len + 1);
+	if (binary == NULL)
+	{
+		free(binary);
+		return (0);
+	}
 	dec_to_bi(&binary[len - 1], decimal);
 	binary[len] = '\0';
 
