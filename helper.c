@@ -21,7 +21,7 @@ int get_length(char *str)
  * @decimal: a number in base 10.
  * Return: void.
  */
-void dec_to_bi(char *binary, int decimal)
+void dec_to_bi(char *binary, unsigned int decimal)
 {
 	if (decimal == 0)
 		return;
@@ -36,7 +36,7 @@ void dec_to_bi(char *binary, int decimal)
  * @decimal: a number in base 10.
  * Return: length of a binary number.
  */
-int get_bi_length(int decimal)
+int get_bi_length(unsigned int decimal)
 {
 	if (decimal == 0)
 		return (0);

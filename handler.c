@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 #include <limits.h>
 #include <stdlib.h>
 #include <stdarg.h>
@@ -90,12 +91,17 @@ int int_handler(va_list ap)
  */
 int bi_handler(va_list ap)
 {
-	int decimal = va_arg(ap, int);
-	int len = get_bi_length(decimal);
-	char *binary = malloc(len + 1);
+	unsigned int decimal = va_arg(ap, unsigned int);
+	int len;
+	char *binary;
 
+	if (decimal == 0)
+		return (printchar('0'));
+	len = get_bi_length(decimal);
+	binary = malloc(len + 1);
 	dec_to_bi(&binary[len - 1], decimal);
 	binary[len] = '\0';
+
 	return (printstr(binary));
 }
 
