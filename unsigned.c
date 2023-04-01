@@ -14,6 +14,9 @@ int unsigned_handler(va_list ap)
 	char *digits;
 	int i;
 
+	if (uint == 0)
+		return (printchar('0'));
+
 	for (i = 0; uint_cp > 0; i++)
 		uint_cp /= 10;
 
