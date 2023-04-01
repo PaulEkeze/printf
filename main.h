@@ -26,5 +26,6 @@ int int_handler(va_list ap);
 void dec_to_bi(char *binary, unsigned int decimal);
 int bi_handler(va_list ap);
 int get_bi_length(unsigned int decimal);
+int unsigned_handler(va_list ap);
 
 #endif
