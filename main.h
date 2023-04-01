@@ -35,5 +35,6 @@ int get_hex_length(unsigned int decimal);
 void dec_to_hex(char *hexa, unsigned int decimal);
 void dec_to_HEX(char *hexa, unsigned int decimal);
 int HEX_handler(va_list ap);
+int nonp_handler(va_list ap);
 
 #endif

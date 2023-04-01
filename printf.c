@@ -59,6 +59,7 @@ int (*get_handler(char specifier))(va_list)
 		{'o', oct_handler},
 		{'x', hex_handler},
 		{'X', HEX_handler},
+		{'S', nonp_handler},
 		{'\0', NULL}
 	};
 
